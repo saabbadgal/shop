@@ -58,7 +58,7 @@
                                         <tbody>
                                             @foreach($orders as $order)
                                             <tr>
-                                                <td>{{$order->order_number}}</td>
+                                                <td><a href="{{ route('profile.order.detail',$order->id) }}">{{$order->order_number}}</a></td>
                                                 <td>{{$order->created_at}}</td>
                                                 <td><span class="success">{{$order->status}}</span></td>
                                                 <td>{{$order->total_qty}}</td>

@@ -19,4 +19,10 @@ class OrderProduct extends Model
 
     	return $this->belongsToMany('App\Product');
     }
+
+    public function designs(){
+      $htis->belongsTo("App\Product",'design_id',"id");
+    }
+
+    
 }

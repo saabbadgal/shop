@@ -12,7 +12,7 @@ class Order extends Model
 
     public function products(){
 
-    	return $this->belongsToMany('App\Product','order_product','order_id','product_id')->withPivot('price','size','color','qty');
+    	return $this->belongsToMany('App\Product','order_product','order_id','product_id')->withPivot('price','size','color','qty','design_price','design_id');
     }
 
     public function statuses(){
@@ -29,4 +29,8 @@ class Order extends Model
 
     	return $this->belongsTo('App\OrderAddress');
     }
+
+    public function design($id){
+        return Product::find($id);
+      }
 }

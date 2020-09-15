@@ -19,8 +19,8 @@
 <!--breadcrumbs area end-->
 <!-- my account start  -->
 <section class="main_content_are">
-<div class="container my-5">
-<div class="account_dashboard">
+<div class="container ">
+<div class="account_dashboard my-5">
 <div class="row">
 <div class="col-sm-12 col-md-2 col-lg-3">
 <!-- Nav tabs -->
@@ -33,16 +33,43 @@
 </div>
 </div>
 <div class="col-sm-12 col-md-10 col-lg-9">
+    <div class="tab-content dashboard_content">
+        <div class="tab-pane fade show active">
+            <div class="row">
+                @foreach($user->addresses as $address)
+                <div class="col-md-4">
+                    <div class="panel-default"> 
+                                <div class=" blue-grey lighten-5 py-3 px-3 mr-2 mb-2"> 
+                                    <ul class="list-group">
+                                        <div>
+                                            <a href="{{route('profile.edit',$address->id)}}" class=" "><button class="btn  btn-success p-1 text-white">Edit</button></a>
+                                            <form action="{{route('profile.destroy',$address->id)}}" method="post" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                            <button type="submit" class="btn  btn-danger p-1 text-white   ">Delete</button>
+                                            </form>
+                                        </div> 
+                                        <li class="list-group-item  elegant">{{$address->name}}</li>
+                                        <li class="list-group-item">{{Str::ucfirst($address->city)}}</li>
+                                        <li class="list-group-item">{{Str::ucfirst($address->state)}}</li>
+                                        <li class="list-group-item">{{Str::ucfirst($address->pin)}}</li>
+                                        <li class="list-group-item">{{Str::ucfirst($address->country)}}</li>
+                                        <li class="list-group-item">{{Str::ucfirst($address->phone)}}</li>
+                                      </ul>  
+                        </div>
+            </div>
+        </div>
+        @endforeach
+       </div>
+    </div>
+    </div>
+
 <!-- Tab panes -->
 <div class="tab-content dashboard_content">
-<div class="tab-pane active show" id="address">
-    @php
-    // dd($user);
-    @endphp
-    <div class="row">
+<div class="tab-pane active show" id="address"> 
+    {{-- <div class="row">
         @foreach($user->addresses as $address)
-        <div class="col-md-4 blue-grey lighten-5 py-3 px-3 mr-2 mb-2">
-            <!-- Links -->
+        <div class="col-md-4 blue-grey lighten-5 py-3 px-3 mr-2 mb-2"> 
             <h5 class="text-uppercase">Address {{$loop->iteration}} </h5>
                 <a href="{{route('profile.edit',$address->id)}}" class="d-inline float-right"><button class="btn btn-sm btn-success p-1 text-white d-inline">Edit</button></a> 
                 <form action="{{route('profile.destroy',$address->id)}}" method="post">
@@ -69,13 +96,15 @@
             <p>
             <p>
             <i class="fas fa-home mr-3"></i>{{Str::ucfirst($address->phone)}}</p>
-            <p> 
-                     
-                    
+            <p>  
                 </div>
                 @endforeach
-            </div> 
-            
+           
+            </div>  --}}
+            @if($user->addresses->count() < 1)
+            <div><a href="{{route('profile.create')}}"><button type="button" class="shop-now mdb-color text-white" style="min-width: 150px;">Create Address</button></a></div> 
+            <h3>&nbsp; &nbsp; ! No Address Found</h2> 
+            @endif 
         </div>
     </div>
 </div>
@@ -83,5 +112,5 @@
 </div>
 </div> 
 </section>
-<!-- my account end   --> 
+ 
 @endsection

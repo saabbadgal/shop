@@ -2,10 +2,11 @@
 
 namespace Illuminate\Foundation\Auth;
 
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Session;
 
 trait RegistersUsers
 {
@@ -39,10 +40,20 @@ trait RegistersUsers
             return $response;
         }
 
-        return $request->wantsJson()
-                    ? new Response('', 201)
-                    : redirect($this->redirectPath());
-    }
+        if($request->wantsJson()){
+            return new Response('', 201);
+        }
+        if(Session::get('from') == 'cart'){
+
+            Session::forget('form');
+             return redirect('/checkout');
+        }
+        
+      return   redirect($this->redirectPath()); 
+                
+     }
+        
+ 
 
     /**
      * Get the guard to be used during registration.

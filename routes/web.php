@@ -1,5 +1,5 @@
 <?php
-
+ 
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+ 
 //User Routes
 Auth::routes();
 
 //Admin Routes
 Route::prefix('admin')->namespace('Admin\Auth')->name('admin.')->group(function(){
-
+          
         Route::get('login', 'LoginController@showAdminLoginForm')->name('login'); 
         Route::post('login', 'LoginController@adminLogin')->name('login'); 
         Route::post('logout', 'LoginController@logout')->name('logout'); 
@@ -28,7 +29,7 @@ Route::prefix('admin')->namespace('Admin\Auth')->name('admin.')->group(function(
 
 
 Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function(){
-
+    
 	//Category
 	Route::get('category', 'CategoryController@index')->name('category.index');
 	Route::post('category', 'CategoryController@store')->name('category.store');
@@ -39,8 +40,10 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function(){
 
     //Product
     Route::name('product.')->group(function(){
-
+        
+        //Product
         Route::get('product', 'ProductController@index')->name('index');
+        Route::get('product/{type}', 'ProductController@where')->name('where');
         Route::get('product/create', 'ProductController@create')->name('create');
     	Route::post('product', 'ProductController@store')->name('store');
     	Route::get('product/show/{id}', 'ProductController@show')->name('show');
@@ -49,9 +52,17 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->group(function(){
     	Route::delete('product/delete/{id}', 'ProductController@destroy')->name('destroy');
     
         //Product Image 
-    	Route::get('product/images/form/{id}', 'ProductController@uploadForm')->name('images.form');
+    	// Route::get('product/images/form/{id}', 'ProductController@uploadForm')->name('images.form');
     	Route::post('product/images/upload/{id}', 'ProductController@uploadImages')->name('images.store');
-    	Route::post('product/image/delete/{id}', 'ProductController@deleteImage')->name('image.delete'); 
+        Route::post('product/image/delete/{id}', 'ProductController@deleteImage')->name('image.delete'); 
+        
+        // //Product Design
+        // Route::get('design/create/{id}','ProductController@designCreate')->name('design.create');
+        // Route::post('design/{id}','ProductController@designStore')->name('design.store');
+        // Route::get('design/{design}','ProductController@designEdit')->name('design.edit');
+        // Route::patch('design/{design}','ProductController@designUpdate')->name('design.update');
+        // Route::post('design/destroy/{design}','ProductController@designDelete')->name('design.delete');
+
     });
 
     //Order
@@ -81,10 +92,14 @@ Route::namespace('Shop')->group(function(){
     Route::patch('profile/{id}','ProfileController@update')->name('profile.update');
     Route::delete('profile/{id}','ProfileController@destroy')->name('profile.destroy');
     Route::get('profile/orders','ProfileController@orders')->name('profile.orders');
+    Route::get('profile/orderdetail/{order}','ProfileController@orderDetail')->name('profile.order.detail');
 
     //Checkout
     Route::get('checkout','CheckoutController@index')->name('checkout.index');
-    Route::post('checkout','CheckoutController@store')->name('checkout.store');
+    Route::post('checkout/address','CheckoutController@selectAddress')->name('checkout.selectaddress');
+    Route::post('checkout/pay','CheckoutController@pay')->name('checkout.pay');
+    Route::post('checkout/store','CheckoutController@store')->name('checkout.store');
+
     
     //Shop
     Route::get('/','ShopController@index')->name('shop.index');
@@ -93,10 +108,13 @@ Route::namespace('Shop')->group(function(){
     Route::get('product/{id}-{slug}','ShopController@show')->name('shop.show');
     Route::get('about','ShopController@about')->name('shop.about');
     Route::get('gallery','ShopController@gallery')->name('shop.gallery');
-    Route::get('konzept','ShopController@konzept')->name('shop.konzept'); 
+    Route::get('konzept','ShopController@konzept')->name('shop.konzept');
 
     //Cart
-    Route::post('addtocart/{product}','CartController@addToCart')->name('addToCart');
+    Route::post('selectproduct/{product}','CartController@selectProduct')->name('selectproduct');
+    Route::get('showdesign/{product}','CartController@showDesign')->name('showdesign');
+    Route::post('selectdesign/{product}/{design}','CartController@selectDesign')->name('selectdesign');
+    Route::post('addtocart/{product}/{design?}/{total?}','CartController@addToCart')->name('addToCart');
     Route::get('showcart','CartController@index')->name('cart.index');
     Route::post('removecart/{product}','CartController@removeProduct')->name('cart.remove');
     Route::post('udatecart/{product}','CartController@updateProduct')->name('cart.update');
@@ -106,13 +124,18 @@ Route::namespace('Shop')->group(function(){
     Route::get('processPaypal','CheckoutController@processPaypal')->name('process.paypal');
     Route::get('cancelPaypal','CheckoutController@cancelPaypal')->name('cancel.paypal');
 
-
+     
 
 
     Route::get('cart','CartController@index')->name('cart.index');
     Route::post('cart','CartController@store')->name('cart.store');
     Route::delete('cart/delete/{id}','CartController@destroy')->name('cart.destroy');
-
+    
+    //Custom Shoe
+    Route::get('base-shoes','CartController@baseShoes')->name('base.shoes');
+    Route::get('base-shoe/{id}','CartController@baseShoe')->name('base.shoe');
+    Route::post('base-shoe/select-size/{id}','CartController@selectCustomSize')->name('base.shoe.size');
+    Route::post('base-shoe/select-design/{product}/{design}','CartController@selectCustomDesign')->name('base.shoe.design');
 });
 
 

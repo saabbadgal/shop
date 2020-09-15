@@ -168,7 +168,6 @@
 						<option value="   " data-select2-id="37">Foam</option>
 					</select>
 				</div>
-			
 			<div class="form-group col-md-12">
 				<label for="inputEmail4">Description</label>
 				<textarea name="description" class="summernote-inline border theme-border" style="display: none;">{{$product->description}}</textarea>
@@ -178,6 +177,30 @@
 				</div>
 				@enderror
 			</div>
+			
+			<div class="form-group col-md-3 ">
+				<label for="inputEmail4">Select Type</label>
+				<select id="selected" name="type" data-select2-id="1" tabindex="-1" class="select2-hidden-accessible form-control rounded" aria-hidden="true"> 
+					<option value="without_design" {{  $product->type == "Without Design" ? "selected" : ""}} data-select2-id="36">Without Design</option>
+					<option value="with_design" {{  $product->type == "With Design" ? "selected" : ""}} data-select2-id="35">With Design</option> 
+				</select> 
+			</div>  
+			<div class="form-group col-md-3" id="design_box">
+				<label for="inputEmail4">Design Price</label>
+				<input id="dp"  name="design_price" type="number" value="{{$product->designPrice}}" class="form-control rounded" id="inputEmail4" placeholder="Design Price">
+				@error('design_price')
+				<div class="alert alert-danger mt-2" role="alert">
+					{{$message}}
+				</div>
+				@enderror
+		</div>   
+		
+		<div class="form-group col-md-3 d-none">
+			<label for="inputEmail4">Add Type</label>
+			<select  data-select2-id="1" tabindex="-1" class="select2-hidden-accessible form-control rounded" aria-hidden="true">
+				
+			</select>
+		</div>
 			<div class="form-group col-md-12">
 				<button type="submit" class="btn btn-primary">Update</button>
 			</div>
@@ -197,4 +220,37 @@
 <!-- END: Content-->
 
 @include('admin.layouts.footer')
+@endsection
+
+@section('vue')
+<script>
+$(document).ready(function() {
+if($("#design_box").val() == 'With Design'){
+	$("design_box").show();
+	}else{
+    $("#select").hide();
+	}
+
+$('#selected').on('change', function (e) {
+	// alert('hello');
+    var valueSelected = this.value;
+	if(this.value == "without_design"){
+     $("#design_box").hide();
+	 $('#dp').val('');
+	}else{
+	 $("#design_box").show();
+	//  $("#dp").val({{ $product->designPrice }});
+	}
+    
+});
+});
+ 
+// new Vue({
+// 	el: '#app',
+// 	data: {
+// 	  selected: '0',
+// 	}
+//   });
+</script>
+	
 @endsection

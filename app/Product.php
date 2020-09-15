@@ -6,8 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {   
-    
+  protected $dprice;
+  protected $totalprice;
+     
     protected $guarded = []; 
+    
+    public function getTypeAttribute($value)
+    {
+        return $value == "with_design" ? "With Design" : "Without Design";
+    } 
     
    public function sizes(){
 
@@ -58,6 +65,15 @@ class Product extends Model
 
         return url("product/{$this->id}-{$this->slug}");
     }
-  
+
+    public function product_price($dprice ,$totalprice){
+      
+      $this->dprice = $dprice;
+      $this->totalprice = $totalprice;
+      $p = $this->totalprice - $this->dprice;
+      return $p;
+    }
+
+   
 
 }

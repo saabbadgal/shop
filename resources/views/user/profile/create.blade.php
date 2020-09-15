@@ -22,7 +22,7 @@
 <section class="main_content_area">
 <div class="container">
 <div class="account_dashboard">
-<div class="row">
+<div class="row ">
 <div class="col-sm-12 col-md-3 col-lg-3">
 <!-- Nav tabs -->
 <div class="dashboard_tab_button">
@@ -33,7 +33,7 @@
 </ul>
 </div>
 </div>
-<div class="col-sm-12 col-md-9 col-lg-9">
+<div class="col-sm-12 col-md-6 col-lg-6">
 <!-- Tab panes -->
 <div class="tab-content dashboard_content">
 <div class="tab-pane active show" id="address"> 

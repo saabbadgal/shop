@@ -14,8 +14,8 @@ class is_super
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {   
-        // dd(auth('admin')->user());
+    {    
+        
         if(Auth('admin')->check() && auth('admin')->user()->is_super == 1){
             
            // dd('saab');

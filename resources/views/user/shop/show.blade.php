@@ -1,23 +1,11 @@
 @extends('user.layouts.app')
 @section('content') 
-<div class="breadcrumbs_area">
-<div class="container">
-<div class="row">
-<div class="col-12">
-<div class="breadcrumb_content">
-<ul>
-	<li><a href="index.html">home</a></li>
-	<li>product details</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
+ 
 <div class="container">
 <div class="product_details mt-100 mb-100">
 <div class="container">
 <div class="row">
+ 
   <div class="col-lg-6 col-md-6">
                     <div class="product-details-tab">
                     	
@@ -50,7 +38,7 @@
 	<div class="product_d_right">
 	 
 			
-			<h1><a href="#">{{$product->name}}</a></h1>
+			{{-- <h1><a href="#">{{$product->name}}</a></h1> --}}
 			{{-- <div class="product_nav">
 				<ul>
 					<li class="prev"><a href="product-details.html"><i class="fa fa-angle-left"></i></a></li>
@@ -59,6 +47,7 @@
 			</div> --}}
 			<div class=" product_ratting">
 				<ul> 
+				<h1 class="ty-product-block-title"><bdi>{{$product->name}}</bdi></h1> 
 					<li class="review"><a href="#">{{$product->model}} ({{$product->color}}) </a></li>
 				</ul>
 				
@@ -68,28 +57,43 @@
 				<span class="current_price">{{ $product->discountPriceFormat()}}</span>
 				<span class="old_price">{{$product->priceFormat()}}</span><br>
 				@else
+				
 				<span class="current_price" >{{$product->priceFormat()}}</span><br>
 				@endif
 				<div style="color: green; padding-bottom: 10px;">inclusive of all taxes</div>
 				<h6 style="color: black; font-size: 18px;">SELECT SIZE :    <span id="size_error" class="d-none" style="color: red">Please Choose Size</span></h6>
 
-				<div>
+				<div class=" ">
 				@foreach($product->sizes as $size)
                 <button style="font-size: 13px;" value="{{$size->size}}"  type="button" class="btn btn-light btn-sm size px-3 py-2">{{$size->size}} </button> 
 				@endforeach
-				</div>
 			</div> 
-			<div class="product_variant quantity"> 
-		 	<form method="POST" action="{{route('addToCart',$product)}}">
+			 @if($product->type == 'Without Design')
+			<div class="product_variant quantit"> 
+			 <form method="POST" action="{{route('selectproduct',$product)}}">
+					@csrf
+					<input type="hidden" name="size" id="size" value="">  
+					{{-- <button id="button_cart_432095_buy_now" class="" type="submit" name="dispatch[checkout.add]">BUY NOW</button>  --}}
+				   <button name="submit" id="cart_submit" class="ty-btn__secondary ty-btn__add-to-cart ty-btn" type="submit">Select Design</button>  
+			</form> 
+			</div>
+			@endif
+            @if($product->type == 'With Design') 			 
+			<div class="product_variant quantity "> 
+			 <form method="POST" action="{{route('addToCart',$product->id)}}">
 					@csrf
 					<input type="hidden" name="size" id="size" value="">   
 					<label>quantity</label>
-				    <input name="qty" min="1" max="7" value="1" type="number">
+					<input name="qty" min="1" max="7" value="1" type="number">
 				   <button name="submit" id="cart_submit" class="button" type="submit">Add to cart</button>  
-				   
-				</form>  
-			{{-- 	   <a href="{{route('addToCart',$product)}} ">Add<button id="cart_submit" class="button">add to cart</button></a>  --}}
-			</div>
+			</form>   
+				  {{-- <a href="{{route('addToCart',$product)}} ">Add<button id="cart_submit" class="button">add to cart</button></a>     --}}
+			</div>	 
+			@endif
+
+		 	  
+						
+			</div> 
 			{{-- <div class=" product_d_action">
 				<ul>  
 					<li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li> 
@@ -133,4 +137,28 @@
 </div>
 </div>
 <form action="{{route('cart.store')}}"></form> 
+
+@section('custom-js')
+
+<script>
+	$(document).ready(function() {
+	$('.size').click(function() {
+	var size =  $(this).val();
+	$('#size').attr('value', size);
+	$('.size').removeClass('btn btn-danger btn-sm');
+	$('.size').addClass('btn btn-light btn-sm');
+	$(this).removeClass('btn btn-light btn-sm');
+	$(this).addClass('btn btn-danger btn-sm');
+	});
+	$('#cart_submit').click(function(){
+	if($('#size').val()){
+	 console.log('saab');
+	}else{
+	event.preventDefault();
+	$('#size_error').removeClass('d-none');
+	}
+	});
+	});
+  </script>
+@endsection
 @endsection

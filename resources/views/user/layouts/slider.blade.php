@@ -1,3 +1,9 @@
+ <style> 
+    
+ </style>
+    <!-- Grid row -->
+    <div class="row">
+    <div class="col-12">
     <section class="slider_section">
         <div class="slider_area owl-carousel">
             @foreach($sliders as $slider)
@@ -18,3 +24,5 @@
             @endforeach 
         </div>
     </section>
+    </div>
+    </div> 

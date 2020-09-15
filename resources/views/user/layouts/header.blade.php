@@ -18,11 +18,11 @@
 <ul class="offcanvas_main_menu">
     <li class="menu-item-has-children">
         <li><a class="{{ (request()->is('/')) ? 'active' : '' }} " href="{{route('shop.index')}}">Home</a></li>
-            <li><a class="{{ (request()->is('gallery')) ? 'active' : '' }} " href="{{route('shop.gallery')}}">Gallery</a></li>
+            <li><a class="{{ (request()->is('base-shoes')) ? 'active' : '' }} " href="{{route('base.shoes')}}">Custom Shoes</a></li>
             <li><a class="{{ (request()->is('konzept')) ? 'active' : '' }} " href="{{route('shop.konzept')}}">Konzept</a></li>
             <li><a class="{{ (request()->is('about')) ? 'active' : '' }} " href="{{route('shop.about')}}">About</a></li> 
             @if(request()->is('cart*'))  
-            <li><a class="{{ (request()->is('cart')) ? 'active' : '' }} " href="{{route('cart.index')}}">Cart</a></li> 
+            {{-- <li><a class="{{ (request()->is('cart')) ? 'active' : '' }} " href="{{route('cart.index')}}">Cart</a></li>  --}}
             @endif 
             <a href="{{route('cart.index')}}">
         <button style="font-size: 14px"  class="btn btn-elegant btn-sm  px-2 py-1"><i class="fas fa-shopping-cart"></i>Cart<span class="badge badge-danger ml-2"> {{Session::get('cart') !== null ? Session::get('cart')->getTotalQty() : ''}}</span></button></a>
@@ -109,11 +109,11 @@
         <ul>
 
             <li><a class="{{ (request()->is('/')) ? 'active' : '' }} " href="{{route('shop.index')}}">Home</a></li>
-            <li><a class="{{ (request()->is('gallery')) ? 'active' : '' }} " href="{{route('shop.gallery')}}">Gallery</a></li>
+            <li><a class="{{ (request()->is('base-shoes')) ? 'active' : '' }} " href="{{route('base.shoes')}}">Custom Shoes</a></li>
             <li><a class="{{ (request()->is('konzept')) ? 'active' : '' }} " href="{{route('shop.konzept')}}">Konzept</a></li>
             <li><a class="{{ (request()->is('about')) ? 'active' : '' }} " href="{{route('shop.about')}}">About</a></li> 
             @if(request()->is('cart*'))  
-            <li><a class="{{ (request()->is('cart')) ? 'active' : '' }} " href="{{route('cart.index')}}">Cart</a></li> 
+            {{-- <li><a class="{{ (request()->is('cart')) ? 'active' : '' }} " href="{{route('cart.index')}}">Cart</a></li>  --}}
             @endif  
             <a href="{{route('shop.shop')}}"><button type="button" class="shop-now float-right" style="min-width: 150px;"><i class="fas fa-shopping-bag" aria-hidden="true">&nbsp;</i>Shop Now</button></a>
             {{-- <button class="btn btn-mdb-color float-right">Shop</button> --}}

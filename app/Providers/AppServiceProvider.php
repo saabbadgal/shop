@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use App\Profile;
+use App\Profile; 
+use Stripe\Stripe;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,8 +15,8 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    {
-        //
+    { 
+        
     }
 
     /**

@@ -17,14 +17,17 @@
 </div>
 </div> --}}
 <!-- END: Breadcrumbs-->
+@php
+    // dd($product->id);
+@endphp
 <!-- START: Card Data-->
 <div class="row">
 <div class="col-12 mt-3">
 <div class="card">
 <div class="card-header">
     <h6 class="card-title d-inline">Product Details </h6>
-    <div class="btn-group float-right">
-        <a href="{{route('admin.product.edit',$product->id)}} "><button type="button" class="btn btn-outline-secondary d-inline">Edit</button></a>
+    <div class="btn-group float-right"> 
+        <a href="{{route('admin.product.edit',$product->id)}} "><button type="button" class="btn btn-outline-secondary d-inline  ml-2">Edit</button></a>
         <form action="{{route('admin.product.destroy',$product->id)}}" method="post">
             @csrf
             @method('DELETE')
@@ -104,10 +107,13 @@
             <img class="portfolioImage img-fluid" src="{{ asset($product->primary_image)}}" alt="" style="max-width: 200px;">
         </div>
         <div class="card-body border brd-gray border-top-0 border-right-0 border-left-0">
-            <h4 class="mb-0"><a href="#" class="f-weight-500 text-primary">{{$product->name}}</a></h4>
+            <h4 class="mb-0">{{$product->name}}</a></h4>
         </div>
         <div class="card-body border brd-gray border-top-0 border-right-0 border-left-0">
-            <h4 class="mb-0"><a href="#" class="f-weight-500 text-primary">Model : {{$product->model}}</a></h4>
+            <h4 class="mb-0">Model : {{$product->model}}</a></h4>
+        </div>
+        <div class="card-body border brd-gray border-top-0 border-right-0 border-left-0">
+            <h4 class="mb-0">Type : {{$product->type}}</a></h4>
         </div>{{--
         <div class="card-body border border-top-0 border-right-0 border-left-0">
             <div class="clearfix">
@@ -126,16 +132,14 @@
         <div class="card-body border brd-gray border-top-0 border-right-0 border-left-0">
             <div class="row">
                 <div class="col-12">
+                    <h4 class="lato-font mb-0 text-danger">
                     @if($product->discountPriceDollar() !== "$")
-                    <div class="float-left">
-                        <h4 class="lato-font mb-0 text-danger"> {{ $product->discountPriceDollar()}}</h4>
-                    </div>
-                    <div class="float-left  ml-2">
-                        <h4 class="lato-font body-color mb-0"><del>{{$product->priceDollar() }} </del></h4>
-                    </div>
-                    @else
-                    <h4 class="lato-font mb-0 text-danger"> {{ $product->priceDollar()}}</h4>
+                         {{ $product->discountPriceDollar()}} 
+                         <del>{{$product->priceDollar() }} </del> 
+                    @else 
+                     {{ $product->priceDollar()}} 
                     @endif
+                     + {{"$".$product->designPrice}} = {{ "$".$product->totalPrice }} </h4>
                 </div>
             </div>
         </div>
@@ -172,6 +176,8 @@
 </div>
 
 </div>
+ 
+ 
 <!-- END: Card DATA-->
 </div>
 </main>

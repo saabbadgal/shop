@@ -9,13 +9,22 @@
                         <div class="lock-image col-12 col-sm-5"></div>
                         <div class="login-form col-12 col-sm-7">
                             <div class="form-group mb-3">
-                                <label for="emailaddress">Email address</label>
-                                <input name="email" class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">
-                            </div>
+                                <label for="emailaddress">Email address <span style="color: red;">@error('email')
+                             ({{ $message }})
+                                @enderror</span>
+                            </label>
 
+                                <input name="email" class="form-control" type="email" id="emailaddress"    placeholder="Enter your email">
+                                
+                            </div>
+                          
                             <div class="form-group mb-3">
-                                <label for="password">Password</label>
-                                <input name="password" class="form-control" type="password" required="" id="password" placeholder="Enter your password">
+                                <label for="password">Password
+                                    <span style="color: red;">@error('password')
+                                        ({{ $message }})
+                                           @enderror</span>
+                                </label>
+                                <input name="password" class="form-control" type="password"   id="password" placeholder="Enter your password">
                             </div>
 
                            {{--  <div class="form-group mb-3">

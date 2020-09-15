@@ -1832,7 +1832,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   }
 }
 .slider_content h1 {
-  font-size: 100px;
+  font-size: 70px;
   line-height: 100px;
   font-weight: 600;
   margin-bottom: 21px;
@@ -2533,7 +2533,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .single_product:hover .add_to_cart {
   opacity: 1;
   visibility: visible;
-  bottom: 35px;
+  /* bottom: 35px; */
 }
 @media only screen and (max-width: 767px) {
   .single_product:hover .add_to_cart {
@@ -2726,7 +2726,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 .product_content {
   text-align: center;
-  padding: 17px 15px 40px 15px;
+  padding: 17px 15px 15px 15px;
   position: relative;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -4262,6 +4262,12 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .footer_bottom {
   padding: 15px 0;
   background: #F53737;
+  /* position: static; */
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /* padding: 1rem;  */
+
 }
 @media only screen and (max-width: 767px) {
   .footer_bottom {
@@ -6283,7 +6289,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 .table_desc {
   border: 1px solid #e5e5e5;
-  margin-bottom: 100px;
+  margin-bottom: 70px;
   margin-top: 2px;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -6326,7 +6332,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 }
 .table_desc .cart_page table tbody tr td.product_thumb {
   min-width: 10px;
-  max-width: 180px;
+  max-width: 130px;
 }
 .table_desc .cart_page table tbody tr td.product_thumb a img {
   width: 100px;
@@ -10172,4 +10178,160 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     }
     .table-responsive table tbody tr td{
     min-width: 50px;
+    }
+
+
+    
+    .md-stepper-horizontal {
+      display:table;
+      width:100%;
+      margin:0 auto;
+      background-color:#FFFFFF;
+      /* box-shadow: 0 3px 8px -6px rgba(0,0,0,.50); */
+    }
+    .md-stepper-horizontal .md-step {
+      display:table-cell;
+      position:relative;
+      padding:24px;
+    }
+    .md-stepper-horizontal .md-step:hover,
+    .md-stepper-horizontal .md-step:active {
+      background-color:rgba(0,0,0,0.04);
+    }
+    .md-stepper-horizontal .md-step:active {
+      border-radius: 15% / 75%;
+    }
+    .md-stepper-horizontal .md-step:first-child:active {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    .md-stepper-horizontal .md-step:last-child:active {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .md-stepper-horizontal .md-step:hover .md-step-circle {
+      background-color:#757575;
+    }
+    .md-stepper-horizontal .md-step:first-child .md-step-bar-left,
+    .md-stepper-horizontal .md-step:last-child .md-step-bar-right {
+      display:none;
+    }
+    .md-stepper-horizontal .md-step .md-step-circle {
+      width:30px;
+      height:30px;
+      margin:0 auto;
+      background-color:#999999;
+      border-radius: 50%;
+      text-align: center;
+      line-height:30px;
+      font-size: 16px;
+      font-weight: 600;
+      color:#FFFFFF;
+    }
+    .md-stepper-horizontal.green .md-step.active .md-step-circle {
+      background-color:#00AE4D;
+    }
+    .md-stepper-horizontal.orange .md-step.active .md-step-circle {
+      background-color:#F96302;
+    }
+    .md-stepper-horizontal .md-step.active .md-step-circle {
+      background-color: #f53737;
+    }
+    .md-stepper-horizontal .md-step.done .md-step-circle:before {
+      font-family:'FontAwesome';
+      font-weight:100;
+      content: "\f00c";
+    }
+    .md-stepper-horizontal .md-step.done .md-step-circle *,
+    .md-stepper-horizontal .md-step.editable .md-step-circle * {
+      display:none;
+    }
+    .md-stepper-horizontal .md-step.editable .md-step-circle {
+      -moz-transform: scaleX(-1);
+      -o-transform: scaleX(-1);
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+    }
+    .md-stepper-horizontal .md-step.editable .md-step-circle:before {
+      font-family:'FontAwesome';
+      font-weight:100;
+      content: "\f040";
+    }
+    .md-stepper-horizontal .md-step .md-step-title {
+      margin-top:16px;
+      font-size:16px;
+      font-weight:600;
+    }
+    .md-stepper-horizontal .md-step .md-step-title,
+    .md-stepper-horizontal .md-step .md-step-optional {
+      text-align: center;
+      color:rgba(0,0,0,.26);
+    }
+    .md-stepper-horizontal .md-step.active .md-step-title {
+      font-weight: 600;
+      color:rgba(0,0,0,.87);
+    }
+    .md-stepper-horizontal .md-step.active.done .md-step-title,
+    .md-stepper-horizontal .md-step.active.editable .md-step-title {
+      font-weight:600;
+    }
+    .md-stepper-horizontal .md-step .md-step-optional {
+      font-size:12px;
+    }
+    .md-stepper-horizontal .md-step.active .md-step-optional {
+      color:rgba(0,0,0,.54);
+    }
+    .md-stepper-horizontal .md-step .md-step-bar-left,
+    .md-stepper-horizontal .md-step .md-step-bar-right {
+      position:absolute;
+      top:36px;
+      height:1px;
+      border-top:1px solid #DDDDDD;
+    }
+    .md-stepper-horizontal .md-step .md-step-bar-right {
+      right:0;
+      left:50%;
+      margin-left:20px;
+    }
+    .md-stepper-horizontal .md-step .md-step-bar-left {
+      left:0;
+      right:50%;
+      margin-right:20px;
+    }
+
+     @media screen and (max-width: 1200px) {
+     .owl-item{
+        width: 100% !important;
+     }
+     .owl-wrapper{
+       width: 100% !important;
+     }
+    }
+
+
+    
+  .dropdown-item{
+    font-weight: 300;
+    font-size: 12px;
+    padding: 0.3rem 1rem;
+    }
+    .dropdown-divider{
+    margin: 0;
+    }
+    .dropdown-menu{
+    padding: 0;
+    min-width: 0;
+    }
+    .noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+    supported by Chrome, Edge, Opera and Firefox */
+    }
+    
+    .account_form p{
+      margin-bottom: 2px;
     }

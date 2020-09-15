@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Shop;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Order;
 use App\User; 
 use App\Address;
-use App\Order;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 
 class ProfileController extends Controller
@@ -36,7 +37,7 @@ class ProfileController extends Controller
 
 
     public function store(Request $request)
-    {
+    {     
          $request->validate([
          
         'name' =>'required',
@@ -45,6 +46,8 @@ class ProfileController extends Controller
         'pin' => 'required',
         'phone' =>  'required',
         ]);
+
+        
 
         if($request->phone){
              $user = User::find(auth()->user()->id);
@@ -59,11 +62,14 @@ class ProfileController extends Controller
         $address->state = $request->state;
         $address->pin = $request->pin;
         $address->country = $request->country; 
-         $address->phone = $request->phone; 
+        $address->phone = $request->phone; 
         $address->user_id = auth()->user()->id;
         $address->save();
-
-        return redirect()->route('profile.index');
+        if(Str::contains(url()->previous(), 'checkout')){
+            return back();
+        }else{
+          return redirect()->route('profile.index');
+        }
     }
 
      public function edit($id){
@@ -117,4 +123,15 @@ class ProfileController extends Controller
         $orders = Order::with('statuses','products','address')->where('user_id',auth()->user()->id)->get();
         return view('user.profile.orders',compact('orders'));
     }
+
+    public function orderDetail(Order $order){
+
+        $order = Order::with('statuses','products','address')->find($order->id);
+        // dd($order);
+        return view('user.profile.orderdetail',compact('order'));
+    }
+
+    public function design($id){
+        return Product::find($id);
+      }
 }

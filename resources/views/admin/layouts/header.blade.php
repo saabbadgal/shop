@@ -9,7 +9,7 @@
             <div class="site-width">
                 <nav class="navbar navbar-expand-lg  p-0">
                     <div class="navbar-header  h-100 h4 mb-0 align-self-center logo-bar text-left">  
-                        <a href="index.html" class="horizontal-logo text-left">
+                        <a href="#" class="horizontal-logo text-left">
                              <span class="h6 font-weight-bold align-self-center mb-0 ml-auto">Krea Shoes</span>              
                         </a>                   
                     </div>
@@ -182,6 +182,8 @@
                             <li class="dropdown"><a href="#"><i class="icon-options"></i>Products</a>
                                 <ul class="sub-menu">
                                     <li><a href="{{route('admin.product.index')}}"><i class="icon-energy"></i> All Products</a></li>
+                                    <li><a href="{{route('admin.product.where','with_design')}}"><i class="icon-energy"></i> With Design</a></li>
+                                    <li><a href="{{route('admin.product.where','without_design')}}"><i class="icon-energy"></i> Without Design</a></li>
                                     <li><a href="{{route('admin.product.create')}}"><i class="icon-disc"></i>Create Product</a></li> 
                                 </ul>
                             </li>

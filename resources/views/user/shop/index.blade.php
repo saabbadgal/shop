@@ -1,8 +1,18 @@
 @extends('user.layouts.app')
+@section('custom-css')
+<style>
+    @media screen and (max-width: 600px) { 
+
+        .how_it{
+            font-size:7vw;
+        }
+    }
+</style>
+@endsection
 @section('content') 
 @include('user.layouts.slider')
 <!--Section: Content-->
-
+ 
 @php
     // dd($social);
 @endphp
@@ -10,17 +20,17 @@
 <!-- Grid row -->
 <div class="row">
 <div class="col-12">
-<div class="card my-md-4" style="box-shadow: none;">
+<div class="card " style="box-shadow: none;">
 <div class="card-body p-0">
 <div class="row mx-0">
     <div class="col-lg-12 accent-3 rounded-right py-4 px-md-5">
         <div class="row text-center">
-            <div class="col-md-8 d-none d-md-block">
+            <div class="col-md-8  d-md-block pb-md-3">
                 <div class="section_titl p-0 m-0 section_saab">
-                    <h2 class="mb-1">How it <span style="font-weight: 600; color: #F53737;">Works</span></h2>
+                    <h1 class="mb-1 how_it">How it <span style="font-weight: 600; color: #F53737;">Works</span></h2>
                 </div>
             </div>
-            <div class="col-md-4 ">
+            <div class="col-md-4  ">
                 <a href="{{route('shop.shop')}}"><button type="button"  class="shop-now "><i class="fas fa-shopping-bag">&nbsp;</i>Shop Now</button></a>
             </div>
         </div>
@@ -32,7 +42,7 @@
 </div>
 </div>
 <!--banner area start-->
-<div class="banner_area home1_banner mb-95">
+<div class="banner_area home1_banner ">
 <div class="container">
 <div class="row">
 <div class="col-lg-3 col-md-3 col-sm-3 col-6">
@@ -100,7 +110,7 @@
 </div>
 <div class="product_content grid_content">
     <div class="product_rating">
-        <h4 class="product_name"><a href="{{$product->path()}}">{{$product->name}} </a></h4>
+        <h3 class="product_name"><a href="{{$product->path()}}">{{$product->name}} </a></h3>
         <div class="price_box">
             @if($product->discountPriceFormat() !== "$")
             <span class="current_price">{{ $product->priceFormat() }} </span>
